@@ -1,0 +1,49 @@
+.card {
+  max-width: 325px;
+  display: flex;
+  flex-direction: column;
+  &-img {
+    height: 464px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.card-title-wrapper {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  opacity: .7;
+  color: var(--white);
+}
+
+.year {
+  border: 1px solid #979797;
+  border-radius: 4px;
+  padding: 4px 8px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  opacity: .7;
+  color: var(--white);
+}
+
+.genre {
+  margin-top: 8px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  opacity: .5;
+  color: var(--white);
+}
