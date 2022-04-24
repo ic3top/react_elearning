@@ -1,0 +1,23 @@
+.button {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  border-radius: 4px;
+
+  padding: 18px 0;
+  width: 100%;
+  transition: filter .2s ease;
+  border: 1px solid var(--main-red);
+  &:hover {
+    filter: brightness(90%);
+  }
+  &_primary {
+    color: var(--white);
+    background-color: var(--main-red);
+  }
+  &_secondary {
+    color: var(--main-red);
+    background-color: transparent;
+  }
+}

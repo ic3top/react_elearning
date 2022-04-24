@@ -13,7 +13,20 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 button, input {
   outline: none;
   border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
 }
