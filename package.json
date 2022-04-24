@@ -43,5 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://ic3top.github.io/react_elearning"
+  "homepage": "https://ic3top.github.io/react_elearning",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }
