@@ -2,8 +2,10 @@ import './header.scss';
 import {useState} from "react";
 import {Logo} from "../logo/Logo";
 import {Button} from "../button/Button";
+import {useOutletContext} from "react-router-dom";
 
-export const Header = ({ onAddMovie, onSearch }) => {
+export const Header = ({ onSearch }) => {
+  const { onAddMovie } = useOutletContext();
   const [searchVal, setSearchVal] = useState('');
 
   const onSearchSubmit = (e) => {
@@ -11,6 +13,7 @@ export const Header = ({ onAddMovie, onSearch }) => {
 
     onSearch(searchVal);
   }
+
   return (
     <>
       <div className="top-bg" >

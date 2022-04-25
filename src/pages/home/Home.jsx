@@ -1,57 +1,24 @@
 import './home.scss';
 import { MovieCard } from "../../components/movie-card/MovieCard";
-import { Header } from "../../components/header/Header";
 import { Logo } from "../../components/logo/Logo";
 import {useState} from "react";
 import {AddMovieModal} from "./modals/add-movie/AddMovieModal";
-
-const movies = [{
-  year: 2003,
-  title: 'Pulp Fiction 1',
-  genre: 'Action & Adventure',
-  image: 'url',
-  id: 1,
-  rating: 5.3,
-  views: 1345234,
-  release: '2001/02/02'
-}, {
-  year: 65432,
-  title: 'Pulp Fiction 2',
-  genre: 'Action & Adventure',
-  image: 'url',
-  id: 2,
-  rating: 4,
-  views: 543313,
-  release: '2012/02/02'
-}, {
-  year: 2003,
-  title: 'Pulp Fiction 3',
-  genre: 'Action & Adventure',
-  image: 'url',
-  id: 3,
-  rating: 6,
-  views: 12234,
-  release: '2013/01/02'
-}, {
-  year: 2003,
-  title: 'Pulp Fiction 4',
-  genre: 'Action & Adventure',
-  image: 'url',
-  id: 4,
-  rating: 9.3,
-  views: 1445433,
-  release: '2014/02/02'
-}]
+import {Outlet, useNavigate} from "react-router-dom";
+import {movies} from "./mocks";
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   const [showAddMovie, setShowAddMovie] = useState(false);
-  const [sortBy, setSortBy] = useState('release')
+  const [sortBy, setSortBy] = useState('release');
 
   return (
     <>
       <AddMovieModal show={showAddMovie} onClose={() => setShowAddMovie(false)} />
 
-      <Header onAddMovie={() => setShowAddMovie(true)} />
+      <Outlet
+        context={{ onAddMovie: () => setShowAddMovie(true) }}
+      />
 
       <div className="divider" />
 
@@ -85,7 +52,13 @@ export const Home = () => {
               }
 
               return nextMovie[sortBy] - prevMovie[sortBy];
-            }).map(movie => <MovieCard key={movie.id} {...movie} />)}
+            }).map(movie =>
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onClick={() => navigate(`${movie.id}`, { state: { movie }} )}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,5 @@
 import {Formik, Field, Form} from "formik";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Select from 'react-select'
 
 import {Button} from "../button/Button";
 
@@ -10,9 +8,9 @@ import {Input} from "../input/Input";
 import {useEffect, useState} from "react";
 
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'documentary', label: 'Documentary' },
+  { value: 'fiction', label: 'Fiction' },
+  { value: 'criminal', label: 'Criminal' }
 ];
 
 export const MovieForm = ({ movie }) => {
@@ -28,7 +26,7 @@ export const MovieForm = ({ movie }) => {
 
   useEffect(() => {
     if (movie) setFormValues(movie);
-  }, [movie])
+  }, [movie]);
 
   return (
     <Formik

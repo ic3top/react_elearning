@@ -11,7 +11,8 @@ import {OutsideClickHandler} from "../outside-click-handler/OutsideClickHandler"
 import {DeleteMovieModal} from "../../pages/home/modals/delete-movie/DeleteMovieModal";
 import {EditMovieModal} from "../../pages/home/modals/edit-movie/EditMovieModal";
 
-export const MovieCard = ({ year, title, genre, image }) => {
+export const MovieCard = ({ movie, onClick }) => {
+  const { year, title, genre, image } = movie;
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [menuShown, setMenuShown] = useState(false);
@@ -24,9 +25,13 @@ export const MovieCard = ({ year, title, genre, image }) => {
         name={title}
       />
 
-      <EditMovieModal show={editModal} onClose={() => setEditModal(false)} />
+      <EditMovieModal movie={movie} show={editModal} onClose={() => setEditModal(false)} />
 
-      <div className="movie-card" onMouseLeave={() => setMenuShown(false)}>
+      <div
+        className="movie-card"
+        onMouseLeave={() => setMenuShown(false)}
+        onClick={onClick}
+      >
         <div className="movie-card__img-wrapper">
 
           { !menuShown &&
@@ -67,11 +72,6 @@ export const MovieCard = ({ year, title, genre, image }) => {
 }
 
 MovieCard.propTypes = {
-  year: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string,
-  image: PropTypes.string.isRequired,
+  movie: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
 }
