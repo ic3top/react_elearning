@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import datepickeImg from "../../assets/datepicker.svg";
 import {selectStyles} from "./select-styles";
 import Select from "react-select";
+import {useEffect} from "react";
 
 export const Input = ({
     id,
@@ -48,6 +49,7 @@ export const Input = ({
                   className={`input__field ${className}`}
                   id={id}
                   onChange={e => setFieldValue(field.name, e.target.value)}
+                  value={field.value}
                 />
           : <input
               className={`input__field ${className}`}
@@ -55,6 +57,7 @@ export const Input = ({
               type={type}
               {...props}
               onChange={e => setFieldValue(field.name, e.target.value)}
+              value={field.value}
             />
       }
     </div>

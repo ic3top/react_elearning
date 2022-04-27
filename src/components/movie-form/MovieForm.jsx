@@ -30,7 +30,7 @@ export const MovieForm = ({ movie }) => {
 
   return (
     <Formik
-      enableReinitialize
+      enableReinitialize={true}
       initialValues={formValues}
       onSubmit={(values) => {
         console.log(values)

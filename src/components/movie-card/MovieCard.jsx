@@ -10,22 +10,24 @@ import {OutsideClickHandler} from "../outside-click-handler/OutsideClickHandler"
 
 import {DeleteMovieModal} from "../../pages/home/modals/delete-movie/DeleteMovieModal";
 import {EditMovieModal} from "../../pages/home/modals/edit-movie/EditMovieModal";
+import {useToggle} from "../../hooks/useToggle";
 
 export const MovieCard = ({ movie, onClick }) => {
+  const [deleteModal, toggleDelete] = useToggle(false);
+  const [editModal, toggleEdit] = useToggle(false);
+  const [menuShown, toggleMenuShown, setMenuShown] = useToggle(false);
+
   const { year, title, genre, image } = movie;
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
-  const [menuShown, setMenuShown] = useState(false);
 
   return (
     <>
       <DeleteMovieModal
         show={deleteModal}
-        onClose={() => setDeleteModal(false)}
+        onClose={toggleDelete}
         name={title}
       />
 
-      <EditMovieModal movie={movie} show={editModal} onClose={() => setEditModal(false)} />
+      <EditMovieModal movie={movie} show={editModal} onClose={toggleEdit} />
 
       <div
         className="movie-card"
@@ -35,11 +37,11 @@ export const MovieCard = ({ movie, onClick }) => {
         <div className="movie-card__img-wrapper">
 
           { !menuShown &&
-          <div className="movie-card__actions">
-            <button onClick={() => setMenuShown(true)}>
-              <img src={dotsImg} alt="three dots"/>
-            </button>
-          </div>
+            <div className="movie-card__actions">
+              <button onClick={toggleMenuShown}>
+                <img src={dotsImg} alt="three dots"/>
+              </button>
+            </div>
           }
 
           <OutsideClickHandler onOutsideClick={() => setMenuShown(false)}>
@@ -50,11 +52,11 @@ export const MovieCard = ({ movie, onClick }) => {
 
               <button
                 className="movie-card__btn"
-                onClick={() => setEditModal(true)}
+                onClick={toggleEdit}
               >Edit</button>
               <button
                 className="movie-card__btn"
-                onClick={() => setDeleteModal(true)}
+                onClick={toggleDelete}
               >Delete</button>
             </div>
           </OutsideClickHandler>
