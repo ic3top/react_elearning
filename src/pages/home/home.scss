@@ -10,80 +10,12 @@
   padding-bottom: 70px;
 }
 
-.filters {
-  display: flex;
-  justify-content: space-between;
-  &-btn {
-    text-transform: uppercase;
-
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: var(--white);
-    background-color: transparent;
-    padding-bottom: 19px;
-    border-bottom: 4px solid transparent;
-    z-index: 10;
-    &.active {
-      border-bottom-color: var(--main-red);
-    }
-    &:hover {
-      color: #bebebe;
-    }
-  }
-  &-genre {
-    display: flex;
-    gap: 30px;
-  }
-  &-sort {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-    text-transform: uppercase;
-    label {
-      font-size: 16px;
-      line-height: 20px;
-      color: var(--white);
-      opacity: .6;
-    }
-    select {
-      text-transform: uppercase;
-      background-color: transparent;
-      border: none;
-
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 20px;
-      color: var(--white);
-      option {
-        color: var(--black);
-      }
-    }
-  }
-  &-divider {
-    position: relative;
-    top: -4px;
-    height: 4px;
-    background-color: var(--grey);;
-    z-index: 0;
-  }
-}
-
-.movies-found {
-  margin-top: 24px;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--white);
-  span {
-    font-weight: 600;
-  }
-}
-
-.movies {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
-  row-gap: 50px;
+.filters-divider {
+  position: relative;
+  top: -4px;
+  height: 4px;
+  background-color: var(--grey);;
+  z-index: 0;
 }
 
 .footer {

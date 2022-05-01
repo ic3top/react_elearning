@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import datepickeImg from "../../assets/datepicker.svg";
 import {selectStyles} from "./select-styles";
 import Select from "react-select";
-import {useEffect} from "react";
 
 export const Input = ({
     id,
@@ -16,7 +15,6 @@ export const Input = ({
     ...props
   } = { type: 'text', className: '', containerClasses: '' }
 ) => {
-
   return (
     <div className={`input ${containerClasses}`}>
       <label className="input__label" htmlFor={id}>{label}</label>
@@ -40,8 +38,13 @@ export const Input = ({
               id={id}
               styles={selectStyles}
               {...props}
-              onChange={options => setFieldValue(field.name, options)}
-              value={field.value}
+              onChange={options => {
+                setFieldValue(field.name, options);
+              }
+              }
+              value={field.value.map(value => {
+                return typeof value === 'string' && { value, label: value } || value
+              })}
             />
           : type === 'textarea'
               ? <textarea

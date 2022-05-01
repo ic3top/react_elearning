@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
-import {useState} from "react";
 
 import './movie-card.scss';
 
-import moviePlaceHolderImg from '../../assets/movie.png';
 import dotsImg from '../../assets/dots-more.png';
 import closeImg from '../../assets/close-sm.png';
 import {OutsideClickHandler} from "../outside-click-handler/OutsideClickHandler";
 
-import {DeleteMovieModal} from "../../pages/home/modals/delete-movie/DeleteMovieModal";
-import {EditMovieModal} from "../../pages/home/modals/edit-movie/EditMovieModal";
+import DeleteMovieModal from "../../pages/home/modals/delete-movie/DeleteMovieModal";
+import EditMovieModal from "../../pages/home/modals/edit-movie/EditMovieModal";
 import {useToggle} from "../../hooks/useToggle";
 
 export const MovieCard = ({ movie, onClick }) => {
@@ -17,7 +15,7 @@ export const MovieCard = ({ movie, onClick }) => {
   const [editModal, toggleEdit] = useToggle(false);
   const [menuShown, toggleMenuShown, setMenuShown] = useToggle(false);
 
-  const { year, title, genre, image } = movie;
+  const { release_date, title, genres, poster_path, id } = movie;
 
   return (
     <>
@@ -25,6 +23,7 @@ export const MovieCard = ({ movie, onClick }) => {
         show={deleteModal}
         onClose={toggleDelete}
         name={title}
+        id={id}
       />
 
       <EditMovieModal movie={movie} show={editModal} onClose={toggleEdit} />
@@ -45,7 +44,9 @@ export const MovieCard = ({ movie, onClick }) => {
           }
 
           <OutsideClickHandler onOutsideClick={() => setMenuShown(false)}>
-            <div className={`movie-card__modal ${menuShown && 'movie-card__modal_shown'}`}>
+            <div
+              className={`movie-card__modal ${menuShown && 'movie-card__modal_shown'}`}
+            >
               <button className="movie-card__close" onClick={() => setMenuShown(false)}>
                 <img src={closeImg} alt="x-mark"/>
               </button>
@@ -61,13 +62,13 @@ export const MovieCard = ({ movie, onClick }) => {
             </div>
           </OutsideClickHandler>
 
-          <img className="movie-card__img" src={moviePlaceHolderImg} alt="movie"/>
+          <img className="movie-card__img" src={poster_path} alt="movie"/>
         </div>
         <div className="movie-card__info">
           <div className="movie-card__title">{title}</div>
-          <div className="movie-card__year">{year}</div>
+          <div className="movie-card__year">{release_date?.split('-')[0]}</div>
         </div>
-        {genre && <div className="movie-card__genre">{genre}</div>}
+        {genres && <div className="movie-card__genre">{genres.join(' & ')}</div>}
       </div>
     </>
   );

@@ -8,18 +8,24 @@ import {Input} from "../input/Input";
 import {useEffect, useState} from "react";
 
 const options = [
-  { value: 'documentary', label: 'Documentary' },
-  { value: 'fiction', label: 'Fiction' },
-  { value: 'criminal', label: 'Criminal' }
-];
+  { value: "Drama" },
+  { value: "Romance" },
+  { value: "Animation" },
+  { value: "Adventure" },
+  { value: "Family" },
+  { value: "Comedy" },
 
-export const MovieForm = ({ movie }) => {
+  { value: "Fantasy" },
+  { value: "Science Fiction" },
+].map(({ value }) => ({ value, label: value }));
+
+export const MovieForm = ({ movie, onSubmit }) => {
   const [formValues, setFormValues] = useState({
     title: '',
-    release: '',
-    url: '',
-    rating: '',
-    genre: '',
+    release_date: '',
+    poster_path: '',
+    vote_average: '',
+    genres: [],
     runtime: '',
     overview: ''
   });
@@ -33,7 +39,16 @@ export const MovieForm = ({ movie }) => {
       enableReinitialize={true}
       initialValues={formValues}
       onSubmit={(values) => {
-        console.log(values)
+
+        const movie = {
+          ...values,
+          genres: values.genres.map(({ value }) => value),
+          runtime: Number(values.runtime),
+          vote_average: Number(values.vote_average),
+          release_date: new Date(values.release_date).toISOString()
+        }
+
+        onSubmit(movie)
       }}
     >
       <Form className="movie-from">
@@ -43,26 +58,26 @@ export const MovieForm = ({ movie }) => {
           <Field
             component={Input}
             type="date"
-            id="release"
-            name="release"
+            id="release_date"
+            name="release_date"
             placeholder="Select Date"
             label="Release date"
           />
 
           <Field
-            name="url"
+            name="poster_path"
             component={Input}
             placeholder="https://"
-            id="url"
-            label="Movie url"
+            id="poster_path"
+            label="Movie poster url"
             type="text"
           />
 
           <Field
-            name="rating"
+            name="vote_average"
             component={Input}
             placeholder="7.8"
-            id="rating"
+            id="vote_average"
             label="Rating"
             type="number"
             step=".1"
@@ -71,8 +86,8 @@ export const MovieForm = ({ movie }) => {
           />
 
           <Field
-            name="genre"
-            label="Genre"
+            name="genres"
+            label="Genre(s)"
             type="select"
             isMulti
             options={options}

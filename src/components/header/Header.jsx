@@ -1,12 +1,23 @@
 import './header.scss';
+
 import {useState} from "react";
+import {useOutletContext} from "react-router-dom";
+import {connect} from "react-redux";
+
 import {Logo} from "../logo/Logo";
 import {Button} from "../button/Button";
-import {useOutletContext} from "react-router-dom";
+import {fetchMovies} from '../../store/movies/moviesAsyncActions';
 
 export const Header = ({ onSearch }) => {
   const { onAddMovie } = useOutletContext();
   const [searchVal, setSearchVal] = useState('');
+
+  const onInputChange = (value) => {
+    setSearchVal(value);
+    if (value === '') {
+      onSearch(value);
+    }
+  }
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +38,7 @@ export const Header = ({ onSearch }) => {
             <form onSubmit={onSearchSubmit}>
               <input
                 value={searchVal}
-                onChange={e => setSearchVal(e.target.value)}
+                onChange={e => onInputChange(e.target.value)}
                 className="search-input"
                 type="text"
                 placeholder="What do you want to watch?"
@@ -42,3 +53,10 @@ export const Header = ({ onSearch }) => {
     </>
   )
 };
+
+const mepDispatchToProps = (dispatch, props) => ({
+  ...props,
+  onSearch: (search) => dispatch(fetchMovies({ search })),
+})
+
+export default connect(null, mepDispatchToProps)(Header)
