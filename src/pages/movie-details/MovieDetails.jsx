@@ -2,14 +2,24 @@ import './movie-details.scss';
 import searchImg from '../../assets/search.png';
 
 import {Link, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+
 import {Logo} from "../../components/logo/Logo";
-import {useSelector} from "react-redux";
+import {fetchMovieById} from '../../store/movies/moviesAsyncActions';
 
 
 export const MovieDetails = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
 
-  const movie = useSelector(({ movies: { value } }) => value.find(movie => movie.id === Number(id)));
+  const movie = useSelector(({ movies: { value } }) => value.find(movie => movie.id == id));
+
+  useEffect(() => {
+    if (!movie) {
+      dispatch(fetchMovieById(id));
+    }
+  }, [id, movie]);
 
   if (!movie) return null;
 

@@ -8,8 +8,8 @@ import {fetchMovies} from '../../store/movies/moviesAsyncActions';
 
 import {Logo} from "../../components/logo/Logo";
 import AddMovieModal from "./modals/add-movie/AddMovieModal";
-import MovieFilters from "../../components/movie-filters/movie-filters";
-import MovieList from "../../components/movie-list/movie-list";
+import MovieFilters from "../../components/movie-filters/MovieFilters";
+import MovieList from "../../components/movie-list/MovieList";
 
 export const Home = () => {
   const dispatch = useDispatch();

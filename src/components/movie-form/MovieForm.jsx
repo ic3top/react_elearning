@@ -1,11 +1,13 @@
 import {Formik, Field, Form} from "formik";
+import {useEffect, useState} from "react";
 import "react-datepicker/dist/react-datepicker.css";
+
+import {MovieSchema} from './movieSchema';
 
 import {Button} from "../button/Button";
 
 import './movie-form.scss';
 import {Input} from "../input/Input";
-import {useEffect, useState} from "react";
 
 const options = [
   { value: "Drama" },
@@ -38,6 +40,9 @@ export const MovieForm = ({ movie, onSubmit }) => {
     <Formik
       enableReinitialize={true}
       initialValues={formValues}
+      validationSchema={MovieSchema}
+      validateOnBlur={false}
+      validateOnChange={false}
       onSubmit={(values) => {
 
         const movie = {
@@ -52,73 +57,80 @@ export const MovieForm = ({ movie, onSubmit }) => {
       }}
     >
       <Form className="movie-from">
-        <div className="movie-form__wrapper">
-          <Field name="title" component={Input} id="title" label="Title" type="text" />
+          <div className="movie-form__wrapper">
+            <Field
+              name="title"
+              component={Input}
+              id="title"
+              label="Title"
+              type="text"
+              placeholder="Movie title"
+            />
 
-          <Field
-            component={Input}
-            type="date"
-            id="release_date"
-            name="release_date"
-            placeholder="Select Date"
-            label="Release date"
-          />
+            <Field
+              component={Input}
+              type="date"
+              id="release_date"
+              name="release_date"
+              placeholder="Select Date"
+              label="Release date"
+            />
 
-          <Field
-            name="poster_path"
-            component={Input}
-            placeholder="https://"
-            id="poster_path"
-            label="Movie poster url"
-            type="text"
-          />
+            <Field
+              name="poster_path"
+              component={Input}
+              placeholder="https://"
+              id="poster_path"
+              label="Movie poster url"
+              type="text"
+            />
 
-          <Field
-            name="vote_average"
-            component={Input}
-            placeholder="7.8"
-            id="vote_average"
-            label="Rating"
-            type="number"
-            step=".1"
-            max="10"
-            min="1"
-          />
+            <Field
+              name="vote_average"
+              component={Input}
+              placeholder="7.8"
+              id="vote_average"
+              label="Rating"
+              type="number"
+              step=".1"
+              max="10"
+              min="1"
+            />
 
-          <Field
-            name="genres"
-            label="Genre(s)"
-            type="select"
-            isMulti
-            options={options}
-            component={Input}
-          />
+            <Field
+              name="genres"
+              label="Genre(s)"
+              type="select"
+              isMulti
+              options={options}
+              component={Input}
+            />
 
-          <Field
-            name="runtime"
-            component={Input}
-            placeholder="minutes"
-            id="runtime"
-            label="Runtime"
-            type="number"
-          />
+            <Field
+              name="runtime"
+              component={Input}
+              placeholder="minutes"
+              id="runtime"
+              label="Runtime"
+              type="number"
+            />
 
-          <Field
-            type="textarea"
-            placeholder="Movie description"
-            id="overview"
-            name="overview"
-            label="Overview"
-            containerClasses="movie-form__textarea"
-            component={Input}
-          />
-        </div>
+            <Field
+              type="textarea"
+              placeholder="Movie description"
+              id="overview"
+              name="overview"
+              label="Overview"
+              containerClasses="movie-form__textarea"
+              component={Input}
+            />
+          </div>
 
-        <div className="movie-form__actions">
-          <Button className="movie-form__btn" color="secondary" type="reset">Reset</Button>
-          <Button className="movie-form__btn" color="primary" type="submit">Submit</Button>
-        </div>
-      </Form>
+          <div className="movie-form__actions">
+            <Button className="movie-form__btn" color="secondary" type="reset">Reset</Button>
+            <Button className="movie-form__btn" color="primary" type="submit">Submit</Button>
+          </div>
+        </Form>
     </Formik>
   )
 }

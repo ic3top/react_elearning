@@ -15,7 +15,7 @@ export const moviesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovieById.fulfilled, (state, action) => {
-        state.value.push(action.payload.data);
+        state.value.push(action.payload);
     });
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
         const { response, params } = action.payload;

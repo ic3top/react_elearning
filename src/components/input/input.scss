@@ -1,7 +1,6 @@
 .input {
   display: flex;
   flex-direction: column;
-
   &_datepicker {
     position: relative;
     img {
@@ -35,5 +34,18 @@
     font-size: 20px;
     line-height: 24px;
     color: var(--white);
+
+    transition: border-bottom-color .2s ease;
+    border-bottom: 1px solid transparent;
+    &_error {
+      border-bottom-color: #F93244FF;
+    }
+  }
+
+  &__errors {
+    color: #F93244FF;
+    font-size: 14px;
+    margin-top: 5px;
+    height: 20px;
   }
 }

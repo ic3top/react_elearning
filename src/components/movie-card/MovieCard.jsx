@@ -7,7 +7,7 @@ import closeImg from '../../assets/close-sm.png';
 import {OutsideClickHandler} from "../outside-click-handler/OutsideClickHandler";
 
 import DeleteMovieModal from "../../pages/home/modals/delete-movie/DeleteMovieModal";
-import EditMovieModal from "../../pages/home/modals/edit-movie/EditMovieModal";
+import {EditMovieModal} from "../../pages/home/modals/edit-movie/EditMovieModal";
 import {useToggle} from "../../hooks/useToggle";
 
 export const MovieCard = ({ movie, onClick }) => {

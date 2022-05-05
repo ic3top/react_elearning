@@ -29,7 +29,7 @@ export const MovieFilters = ({ activeGenre, onSelectGenre, onSelectSort }) => {
         <select name="sort-by" id="sort-by" onChange={e => onSelectSort(e.target.value)}>
           <option value="release_date">Release Date</option>
           <option value="vote_average">Rating</option>
-          <option value="revenue">Views</option>
+          <option value="vote_count">Views</option>
         </select>
       </div>
     </div>

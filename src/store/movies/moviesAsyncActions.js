@@ -29,7 +29,7 @@ export const fetchMovies = createAsyncThunk('movies/fetchAll', async ({
 
 export const fetchMovieById = createAsyncThunk('movies/fetchById', async (movieId) => {
     const res = await moviesApi.getMovieById(movieId);
-    return res.data;
+    return res;
 });
 
 export const deleteMovieById = createAsyncThunk('movies/deleteById', async (movieId) => {
