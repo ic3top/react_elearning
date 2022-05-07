@@ -31,7 +31,6 @@ export const MovieCard = ({ movie, onClick }) => {
       <div
         className="movie-card"
         onMouseLeave={() => setMenuShown(false)}
-        onClick={onClick}
       >
         <div className="movie-card__img-wrapper">
 
@@ -62,7 +61,7 @@ export const MovieCard = ({ movie, onClick }) => {
             </div>
           </OutsideClickHandler>
 
-          <img className="movie-card__img" src={poster_path} alt="movie"/>
+          <img onClick={onClick} className="movie-card__img" src={poster_path} alt="movie"/>
         </div>
         <div className="movie-card__info">
           <div className="movie-card__title">{title}</div>

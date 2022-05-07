@@ -7,13 +7,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/home" element={<Home />}>
-          <Route path=":id" element={<MovieDetails />} />
-          <Route path="" element={<Header />} />
-        </Route>
+        <Route path="/search" element={<Home />} />
         <Route
           path="*"
-          element={<Navigate to="/home" replace />}
+          element={<Navigate to="/search" replace />}
         />
       </Routes>
     </div>

@@ -1,6 +1,7 @@
-import { fetchMovies } from '../../store/movies/moviesAsyncActions';
-import './movie-filters.scss';
 import {connect} from "react-redux";
+import './movie-filters.scss';
+import { fetchMovies } from '../../store/movies/moviesAsyncActions';
+import {useSearchParams} from "react-router-dom";
 
 const genresToShow = [
   'ALL',
@@ -10,14 +11,26 @@ const genresToShow = [
   'Crime'
 ]
 
-export const MovieFilters = ({ activeGenre, onSelectGenre, onSelectSort }) => {
+export const MovieFilters = ({ onSelectGenre, onSelectSort }) => {
+  const [search, setSearch] = useSearchParams();
+
+  const onClickGenre = (genre) => {
+    setSearch({ ...Object.fromEntries(search), genre });
+    onSelectGenre(genre);
+  }
+
+  const onChangeSort = (sortBy) => {
+    setSearch({ ...Object.fromEntries(search), sortBy });
+    onSelectSort(sortBy);
+  }
+
   return (
     <div className="filters">
       <div className="filters__genre">
         {genresToShow.map(genre => (
           <button
-            className={`filters__btn ${activeGenre === genre && 'filters__btn_active'}`}
-            onClick={() => onSelectGenre(genre)}
+            className={`filters__btn ${search.get('genre') === genre && 'filters__btn_active'}`}
+            onClick={() => onClickGenre(genre)}
             key={genre}
           >
             {genre}
@@ -26,7 +39,7 @@ export const MovieFilters = ({ activeGenre, onSelectGenre, onSelectSort }) => {
       </div>
       <div className="filters__sort">
         <label htmlFor="sort-by">Sort By</label>
-        <select name="sort-by" id="sort-by" onChange={e => onSelectSort(e.target.value)}>
+        <select value={search.get('sortBy') || ''} name="sort-by" id="sort-by" onChange={e => onChangeSort(e.target.value)}>
           <option value="release_date">Release Date</option>
           <option value="vote_average">Rating</option>
           <option value="vote_count">Views</option>
@@ -36,15 +49,9 @@ export const MovieFilters = ({ activeGenre, onSelectGenre, onSelectSort }) => {
   )
 }
 
-const mapDispatchToProps = (dispatch, props) => ({
-  ...props,
+const mapDispatchToProps = (dispatch) => ({
   onSelectGenre: (genre) => dispatch(fetchMovies({ genre })),
   onSelectSort: (sortBy) => dispatch(fetchMovies({ sortBy })),
 });
 
-const mapStateToProps = (state, props) => ({
-  ...props,
-  activeGenre: state.movies.genre,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieFilters)
+export default connect(null, mapDispatchToProps)(MovieFilters)

@@ -1,7 +1,7 @@
 import './movie-details.scss';
 import searchImg from '../../assets/search.png';
 
-import {Link, useParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
@@ -11,7 +11,8 @@ import {fetchMovieById} from '../../store/movies/moviesAsyncActions';
 
 export const MovieDetails = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const [search] = useSearchParams();
+  const id = search.get('movie');
 
   const movie = useSelector(({ movies: { value } }) => value.find(movie => movie.id == id));
 
@@ -39,13 +40,15 @@ export const MovieDetails = () => {
 
         <div className="movie-details__top">
           <Logo />
-          <Link to="/home" className="movie-details__search">
+          <Link to="/search" className="movie-details__search">
             <img src={searchImg} alt="magnifying glass"/>
           </Link>
         </div>
 
         <div className="movie-details__wrapper">
-          <img className="movie-details__poster" src={poster_path} alt="movie poster"/>
+          <div className="movie-details__poster">
+            <img src={poster_path} alt="movie poster"/>
+          </div>
 
           <div>
             <div className="movie-details__title-wrapper">

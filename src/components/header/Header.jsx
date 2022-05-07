@@ -1,21 +1,23 @@
 import './header.scss';
 
 import {useState} from "react";
-import {useOutletContext} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {Logo} from "../logo/Logo";
 import {Button} from "../button/Button";
 import {fetchMovies} from '../../store/movies/moviesAsyncActions';
 
-export const Header = ({ onSearch }) => {
-  const { onAddMovie } = useOutletContext();
-  const [searchVal, setSearchVal] = useState('');
+export const Header = ({ onSearch, onAddMovie }) => {
+  const [search, setSearch] = useSearchParams();
 
-  const onInputChange = (value) => {
-    setSearchVal(value);
-    if (value === '') {
-      onSearch(value);
+  const [searchVal, setSearchVal] = useState(search.get('search') || '');
+
+  const onInputChange = (val) => {
+    setSearchVal(val);
+    setSearch({ ...Object.fromEntries(search), search: val });
+    if (val === '') {
+      onSearch(val);
     }
   }
 

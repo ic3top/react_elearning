@@ -1,11 +1,11 @@
-import {useNavigate} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {connect} from "react-redux";
 
 import './movie-list.scss';
 import {MovieCard} from "../movie-card/MovieCard";
 
 export const MovieList = ({ movies, amount }) => {
-  const navigate = useNavigate();
+  const [search, setSearch] =  useSearchParams();
 
   return (
     <>
@@ -15,7 +15,7 @@ export const MovieList = ({ movies, amount }) => {
           <MovieCard
             key={movie.id}
             movie={movie}
-            onClick={() => navigate(`${movie.id}`)}
+            onClick={() => setSearch({ ...Object.fromEntries(search), movie: movie.id }) }
           />
         )}
       </div>

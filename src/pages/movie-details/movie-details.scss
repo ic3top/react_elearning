@@ -1,6 +1,8 @@
 .movie-details {
   padding: 20px 0;
   background-color: var(--black);
+  height: 520px;
+  box-sizing: border-box;
   &__top {
     display: flex;
     justify-content: space-between;
@@ -13,7 +15,10 @@
     margin-top: 30px;
   }
   &__poster {
-    max-height: 486px;
+    img {
+      height: 400px;
+      object-fit: cover;
+    }
   }
   &__title-wrapper {
     display: flex;
@@ -34,6 +39,8 @@
     border: 1px solid var(--white);
     padding: 15px;
     border-radius: 50%;
+    max-height: 56px;
+    box-sizing: border-box;
   }
   &__genre {
     margin-top: 10px;
