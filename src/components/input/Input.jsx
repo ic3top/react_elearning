@@ -46,7 +46,7 @@ export const Input = ({
               styles={selectStyles(errorMsg)}
               {...props}
               onChange={options => {
-                setFieldValue(field.name, options);
+                setFieldValue(field.name, options.map(({ value }) => value));
               }}
               value={field.value.map(value => {
                 return typeof value === 'string' && { value, label: value } || value

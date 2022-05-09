@@ -24,10 +24,10 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(updateMovie.fulfilled, (state, action) => {
         state.value = state.value.map((movie) => movie.id !== action.payload.id ? movie : action.payload);
-        ++state.totalAmount;
     });
     builder.addCase(createMovie.fulfilled, (state, action) => {
         state.value.push(action.payload.data);
+        ++state.totalAmount;
     });
   }
 });

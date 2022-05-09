@@ -13,7 +13,7 @@ export const MovieSchema = Yup.object().shape({
           .url('Must be a valid url.')
           .required('Required.'),
     release_date: Yup.date().required('Required.'),
-    runtime: Yup.number()
+    runtime: Yup.number('Must be a number.')
            .min(1, 'Must be grater than 1min.')
            .max(1000, 'No more than 1000mins.')
            .required('Required.'),
