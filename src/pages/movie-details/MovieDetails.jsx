@@ -1,5 +1,6 @@
 import './movie-details.scss';
 import searchImg from '../../assets/search.png';
+import moviePlaceholderImg from '../../assets/movie-placeholder.png';
 
 import {Link, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,13 +15,11 @@ export const MovieDetails = () => {
   const [search] = useSearchParams();
   const id = search.get('movie');
 
-  const movie = useSelector(({ movies: { value } }) => value.find(movie => movie.id == id));
+  const movie = useSelector(({ movies: { selectedMovie } }) => selectedMovie);
 
   useEffect(() => {
-    if (!movie) {
-      dispatch(fetchMovieById(id));
-    }
-  }, [id, movie]);
+    dispatch(fetchMovieById(id));
+  }, [id]);
 
   if (!movie) return null;
 
@@ -40,23 +39,27 @@ export const MovieDetails = () => {
 
         <div className="movie-details__top">
           <Logo />
-          <Link to="/search" className="movie-details__search">
+          <Link to={`/search${search}`} className="movie-details__search">
             <img src={searchImg} alt="magnifying glass"/>
           </Link>
         </div>
 
         <div className="movie-details__wrapper">
           <div className="movie-details__poster">
-            <img src={poster_path} alt="movie poster"/>
+            <img
+              src={poster_path}
+              onError={(e) => e.target.src = moviePlaceholderImg}
+              alt="movie poster"
+            />
           </div>
 
           <div>
             <div className="movie-details__title-wrapper">
               <h1 className="movie-details__title">{title}</h1>
-              <div className="movie-details__rating">{vote_average.toFixed(1)}</div>
+              <div className="movie-details__rating">{vote_average?.toFixed(1)}</div>
             </div>
 
-            <p className="movie-details__genre">{genres.join(' & ')}</p>
+            <p className="movie-details__genre">{genres?.join(' & ')}</p>
 
             <div className="movie-details__wiki">
               <p>{release_date}</p>

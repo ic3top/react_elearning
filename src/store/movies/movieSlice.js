@@ -5,27 +5,18 @@ export const moviesSlice = createSlice({
   name: 'movies',
   initialState: {
     value: [],
+    selectedMovie: {},
     totalAmount: 0,
-
-    genre: 'ALL',
-    sortBy: 'release_date',
-    searchBy: 'title',
-    searchQuery: '',
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovieById.fulfilled, (state, action) => {
-        state.value.push(action.payload);
+        state.selectedMovie = action.payload;
     });
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
-        const { response, params } = action.payload;
-        return {
-            value: response.data,
-            totalAmount: response.totalAmount,
-            searchQuery: params.search,
-            genre: params.filter || 'ALL',
-            ...params,
-        }
+        const { response } = action.payload;
+        state.value = response.data;
+        state.totalAmount = response.totalAmount;
     });
     builder.addCase(deleteMovieById.fulfilled, (state, action) => {
         state.value = state.value.filter((movie) => movie.id !== action.payload);

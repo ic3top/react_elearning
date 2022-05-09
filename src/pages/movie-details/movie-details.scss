@@ -1,7 +1,7 @@
 .movie-details {
   padding: 20px 0;
   background-color: var(--black);
-  height: 520px;
+  min-height: 520px;
   box-sizing: border-box;
   &__top {
     display: flex;

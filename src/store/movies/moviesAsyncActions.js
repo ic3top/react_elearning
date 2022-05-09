@@ -6,25 +6,20 @@ export const fetchMovies = createAsyncThunk('movies/fetchAll', async ({
     search: newSearchQuery,
     searchBy: newSearchBy,
     genre: newGenre
-  } = {},
-  { getState }
+  } = {}
 ) => {
-    const { movies: { sortBy, searchBy, searchQuery, genre: prevGenre } } = getState();
 
     const params = {
-        sortBy: newSortBy || sortBy,
-        searchBy: newSearchBy || searchBy,
-        search: newSearchQuery || searchQuery,
+        sortBy: newSortBy || 'release_date',
+        searchBy: newSearchBy || 'title',
+        search: newSearchQuery || '',
     };
 
     if (newGenre && newGenre !== 'ALL') params.filter = newGenre;
-    else if (prevGenre !== 'ALL' && newGenre !== 'ALL') params.filter = prevGenre;
-
-    if (newSearchQuery === '') params.search = newSearchQuery;
 
     const response = await moviesApi.getMoviesList(params);
 
-    return { response, params };
+    return { response };
 });
 
 export const fetchMovieById = createAsyncThunk('movies/fetchById', async (movieId) => {

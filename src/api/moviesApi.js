@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:4000/movies';
 
 export const getMoviesList = async (params) => {
-    const res = await fetch(`${BASE_URL}?` + new URLSearchParams({...params, sortOrder: 'desc'}));
+    const res = await fetch(`${BASE_URL}?` + new URLSearchParams({ ...params, sortOrder: 'desc' }));
     return res.json();
 }
 

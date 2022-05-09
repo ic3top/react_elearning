@@ -1,26 +1,25 @@
 import './home.scss';
 
-import {useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import { useEffect, useState } from "react";
 
-import {fetchMovies} from '../../store/movies/moviesAsyncActions';
+import { useFetchMovies } from '../../hooks/useFetchMovies';
+import { GENRES } from '../../constants';
 
-import {Logo} from "../../components/logo/Logo";
+import { Logo } from "../../components/logo/Logo";
 import AddMovieModal from "./modals/add-movie/AddMovieModal";
-import MovieFilters from "../../components/movie-filters/MovieFilters";
+import { MovieFilters } from "../../components/movie-filters/MovieFilters";
 import MovieList from "../../components/movie-list/MovieList";
-import Header from "../../components/header/Header";
-import {MovieDetails} from "../movie-details/MovieDetails";
+import { Header } from "../../components/header/Header";
+import { MovieDetails } from "../movie-details/MovieDetails";
 
 export const Home = () => {
-  const dispatch = useDispatch();
+  const { search, setSearch, fetchMovies } = useFetchMovies();
   const [showAddMovie, setShowAddMovie] = useState(false);
-  const [search] = useSearchParams();
   const movieId = search.get('movie');
 
   useEffect(() => {
-    dispatch(fetchMovies(Object.fromEntries(search)))
+    if (!search.get('genre')) setSearch({ genre: GENRES[0] })
+    fetchMovies();
   }, []);
 
   return (

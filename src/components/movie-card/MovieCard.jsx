@@ -4,6 +4,8 @@ import './movie-card.scss';
 
 import dotsImg from '../../assets/dots-more.png';
 import closeImg from '../../assets/close-sm.png';
+import moviePlaceholderImg from '../../assets/movie-placeholder.png';
+
 import {OutsideClickHandler} from "../outside-click-handler/OutsideClickHandler";
 
 import DeleteMovieModal from "../../pages/home/modals/delete-movie/DeleteMovieModal";
@@ -61,7 +63,13 @@ export const MovieCard = ({ movie, onClick }) => {
             </div>
           </OutsideClickHandler>
 
-          <img onClick={onClick} className="movie-card__img" src={poster_path} alt="movie"/>
+          <img
+            onClick={onClick}
+            className="movie-card__img"
+            src={poster_path || moviePlaceholderImg}
+            onError={(e) => e.target.src = moviePlaceholderImg}
+            alt="movie"
+          />
         </div>
         <div className="movie-card__info">
           <div className="movie-card__title">{title}</div>

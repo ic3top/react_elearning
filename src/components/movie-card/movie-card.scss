@@ -2,12 +2,6 @@
   max-width: 325px;
   display: flex;
   flex-direction: column;
-  &:hover {
-    .movie-card__img {
-      opacity: .8;
-      transform: scale(1.05);
-    }
-  }
   &__img-wrapper {
     height: 464px;
     position: relative;
@@ -18,6 +12,11 @@
       width: 100%;
       object-fit: cover;
       transition: .2s ease-in;
+      cursor: pointer;
+      &:hover {
+        opacity: .8;
+        transform: scale(1.05);
+      }
     }
     &:hover > .movie-card__actions {
       opacity: 1;
@@ -27,7 +26,7 @@
     margin-top: 22px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
+    align-items: flex-start;
   }
   &__title {
     font-weight: 500;
