@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react_elearning/static/css/main.083004aa.css",
-    "main.js": "/react_elearning/static/js/main.3a2d60cd.js",
+    "main.css": "/react_elearning/static/css/main.29058b60.css",
+    "main.js": "/react_elearning/static/js/main.4df40225.js",
     "static/media/home-bg.png": "/react_elearning/static/media/home-bg.f42a89779bc8c386bd0d.png",
     "static/media/datepicker.svg": "/react_elearning/static/media/datepicker.47b98b6d82addac296286678e48cbd9a.svg",
     "index.html": "/react_elearning/index.html",
     "static/media/close.svg": "/react_elearning/static/media/close.dfaed73046e904b61dcfff38e957f41c.svg",
-    "main.083004aa.css.map": "/react_elearning/static/css/main.083004aa.css.map",
-    "main.3a2d60cd.js.map": "/react_elearning/static/js/main.3a2d60cd.js.map"
+    "main.29058b60.css.map": "/react_elearning/static/css/main.29058b60.css.map",
+    "main.4df40225.js.map": "/react_elearning/static/js/main.4df40225.js.map"
   },
   "entrypoints": [
-    "static/css/main.083004aa.css",
-    "static/js/main.3a2d60cd.js"
+    "static/css/main.29058b60.css",
+    "static/js/main.4df40225.js"
   ]
 }
