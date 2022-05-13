@@ -13,7 +13,7 @@ export const Modal = ({ show, onClose, children, title }) => {
 
   return (
     <div className="overlay">
-      <div className="modal">
+      <div className="modal" role="dialog">
         <button className="modal__close" onClick={onClose}><img src={closeIcon} alt="x-mark"/></button>
         <div className="modal__title">{title}</div>
         {children}

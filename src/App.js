@@ -1,19 +1,23 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
-import {Home} from "./pages/home/Home";
-import {MovieDetails} from "./pages/movie-details/MovieDetails";
-import Header from "./components/header/Header";
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+
+import { Home } from "./pages/home/Home";
+import { ErrorBoundary } from './ErrorBoundary';
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/search" element={<Home />} />
-        <Route
-          path="*"
-          element={<Navigate to="/search" replace />}
-        />
-      </Routes>
-    </div>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <div className="App">
+            <Routes>
+              <Route path="/react_elearning/search" element={<Home />} />
+              <Route
+                path="*"
+                element={<Navigate to="/react_elearning/search" replace />}
+              />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </ErrorBoundary>
   );
 }
 

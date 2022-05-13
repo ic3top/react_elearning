@@ -39,7 +39,7 @@ export const MovieDetails = () => {
 
         <div className="movie-details__top">
           <Logo />
-          <Link to={`/search${search}`} className="movie-details__search">
+          <Link to={`/react_elearning/search${search}`} className="movie-details__search">
             <img src={searchImg} alt="magnifying glass"/>
           </Link>
         </div>

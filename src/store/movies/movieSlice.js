@@ -32,12 +32,4 @@ export const moviesSlice = createSlice({
   }
 });
 
-export const {
-  addMovie,
-  editMovie,
-  setMovies,
-  setActiveGenre,
-  setActiveSortBy,
-} = moviesSlice.actions;
-
 export default moviesSlice.reducer;

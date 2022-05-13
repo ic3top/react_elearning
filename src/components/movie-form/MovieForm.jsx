@@ -44,12 +44,11 @@ export const MovieForm = ({ movie, onSubmit }) => {
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values) => {
-        console.log(values.genres)
         const movie = {
           ...values,
           runtime: Number(values.runtime),
           vote_average: Number(values.vote_average),
-          release_date: new Date(values.release_date).toISOString(),
+          release_date: new Date(values.release_date).toLocaleDateString(),
           tagline: 'tagline'
         }
 

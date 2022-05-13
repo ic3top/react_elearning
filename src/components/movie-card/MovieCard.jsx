@@ -31,6 +31,7 @@ export const MovieCard = ({ movie, onClick }) => {
       <EditMovieModal movie={movie} show={editModal} onClose={toggleEdit} />
 
       <div
+        role="listitem"
         className="movie-card"
         onMouseLeave={() => setMenuShown(false)}
       >
