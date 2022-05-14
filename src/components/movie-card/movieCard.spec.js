@@ -1,4 +1,4 @@
-import {render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import configureStore from 'redux-mock-store';

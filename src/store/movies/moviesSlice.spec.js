@@ -10,13 +10,20 @@ import { getMoviesList } from '../../api/moviesApi';
 import moviesReducer from './movieSLice';
 
 describe('moviesSlice', () => {
-    const mockMovie = { name: 'movie' };
-    const mockMoviesList = [
-        { ...mockMovie, id: '1' },
-        { ...mockMovie, id: '2' }
-    ];
-    const mockMoviesListRes = { data: mockMoviesList, totalAmount: 10 };
-    const mockStore = configureStore([thunk]);
+    let mockMovie;
+    let mockMoviesList;
+    let mockMoviesListRes;
+    let mockStore;
+
+    beforeEach(() => {
+        mockMovie = { name: 'movie' };
+        mockMoviesList = [
+            { ...mockMovie, id: '1' },
+            { ...mockMovie, id: '2' }
+        ];
+        mockMoviesListRes = { data: mockMoviesList, totalAmount: 10 };
+        mockStore = configureStore([thunk]);
+    });
 
     it('should set movies and totalAmount on fetchMovies', () => {
         expect(
@@ -46,7 +53,7 @@ describe('moviesSlice', () => {
     it('should add newly created movie', () => {
         const newMovie = { name: 'new'};
         expect(
-            moviesReducer({ value: mockMoviesList, totalAmount: mockMoviesList.length }, createMovie.fulfilled(newMovie))
+            moviesReducer({ value: mockMoviesList, totalAmount: mockMoviesList.length }, createMovie.fulfilled({ data: newMovie }))
         ).toEqual({ value: [...mockMoviesList, newMovie], totalAmount: mockMoviesList.length + 1 });
     });
 });

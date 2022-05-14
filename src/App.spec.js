@@ -29,7 +29,7 @@ describe('App', () => {
       mockStore = configureStore(middlewares);
     });
 
-    it('should render', () => {
+    it('shouldn\'t render error boundary', () => {
       render(
         <Provider store={mockStore(initialState)}>
             <App />
