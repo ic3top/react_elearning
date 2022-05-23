@@ -1,0 +1,29 @@
+.movieForm {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+  }
+
+  &__textarea {
+    grid-column: span 2;
+    textarea {
+      min-height: 200px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      resize: none;
+    }
+  }
+
+  &__actions {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 13px;
+  }
+
+  &__btn {
+    max-width: 180px;
+  }
+}

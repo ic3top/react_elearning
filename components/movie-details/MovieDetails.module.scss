@@ -1,0 +1,70 @@
+.movieDetails {
+  padding: 20px 0;
+  background-color: var(--black);
+  min-height: 520px;
+  box-sizing: border-box;
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 58px;
+    margin-top: 30px;
+  }
+  &__poster {
+    img {
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+  &__titleWrapper {
+    display: flex;
+    gap: 25px;
+    color: var(--white);
+  }
+  &__title {
+    margin: 0;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 49px;
+    text-transform: uppercase;
+  }
+  &__rating {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    border: 1px solid var(--white);
+    padding: 15px;
+    border-radius: 50%;
+    max-height: 56px;
+    box-sizing: border-box;
+  }
+  &__genre {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--white);
+    opacity: .5;
+  }
+  &__wiki {
+    margin-top: 30px;
+    display: flex;
+    gap: 50px;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--main-red);
+  }
+  &__overview {
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--white);
+    opacity: 0.5;
+  }
+}
