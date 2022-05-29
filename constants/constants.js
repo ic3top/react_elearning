@@ -3,11 +3,11 @@ export const GENRES = [
   'Documentary',
   'Comedy',
   'Horror',
-  'Crime'
+  'Crime',
 ];
 
 export const SORT_BY = [
-    { value: 'release_date', label: 'Release Date' },
-    { value: 'vote_average', label: 'Rating' },
-    { value: 'vote_count', label: 'Views' },
+  { value: 'release_date', label: 'Release Date' },
+  { value: 'vote_average', label: 'Rating' },
+  { value: 'vote_count', label: 'Views' },
 ];

@@ -1,16 +1,16 @@
+/* eslint-disable camelcase */
 import styles from './MovieDetails.module.scss';
 
-import Link from 'next/link'
+import Link from 'next/link';
 import Image from 'next/image';
 
 import searchImg from '/public/img/search.png';
 import moviePlaceholderImg from '/public/img/movie-placeholder.png';
 
-import { Logo } from "/components/logo/Logo";
-import { ImageFallback } from "/components/image-fallback/ImageFallback";
+import { Logo } from '/components/logo/Logo';
+import { ImageFallback } from '/components/image-fallback/ImageFallback';
 
-
-export const MovieDetails = ({ movie }) => {
+export function MovieDetails({ movie }) {
   if (!movie) return null;
 
   const {
@@ -20,7 +20,7 @@ export const MovieDetails = ({ movie }) => {
     vote_average,
     genres,
     runtime,
-    overview
+    overview,
   } = movie;
 
   return (
@@ -29,7 +29,7 @@ export const MovieDetails = ({ movie }) => {
 
         <div className={styles.movieDetails__top}>
           <Logo />
-          <Link href={`/`} className={styles.movieDetails__search}>
+          <Link href="/" className={styles.movieDetails__search}>
             <Image
               src={searchImg}
               alt="magnifying glass"
@@ -60,7 +60,11 @@ export const MovieDetails = ({ movie }) => {
 
             <div className={styles.movieDetails__wiki}>
               <p>{release_date}</p>
-              <p>{runtime} mins</p>
+              <p>
+                {runtime}
+                {' '}
+                mins
+              </p>
             </div>
             <p className={styles.movieDetails__overview}>
               {overview}
@@ -69,5 +73,5 @@ export const MovieDetails = ({ movie }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }

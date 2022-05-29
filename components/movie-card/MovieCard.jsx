@@ -1,24 +1,26 @@
-import styles from './MovieCard.module.scss';
-
+/* eslint-disable camelcase */
 import Image from 'next/image';
+import styles from './MovieCard.module.scss';
 
 import dotsImg from '/public/img/dots-more.png';
 import closeImg from '/public/img/close-sm.png';
 import moviePlaceholderImg from '/public/img/movie-placeholder.png';
 
-import { OutsideClickHandler } from "../outside-click-handler/OutsideClickHandler";
+import { OutsideClickHandler } from '../outside-click-handler/OutsideClickHandler';
 
-import DeleteMovieModal from "../modals/delete-movie/DeleteMovieModal";
-import EditMovieModal from "../modals/edit-movie/EditMovieModal";
-import { useToggle } from "../../hooks/useToggle";
-import {ImageFallback} from "../image-fallback/ImageFallback";
+import DeleteMovieModal from '../modals/delete-movie/DeleteMovieModal';
+import EditMovieModal from '../modals/edit-movie/EditMovieModal';
+import { useToggle } from '../../hooks/useToggle';
+import { ImageFallback } from '../image-fallback/ImageFallback';
 
-export const MovieCard = ({ movie, onClick }) => {
+export function MovieCard({ movie, onClick }) {
   const [deleteModal, toggleDelete] = useToggle(false);
   const [editModal, toggleEdit] = useToggle(false);
   const [menuShown, toggleMenuShown, setMenuShown] = useToggle(false);
 
-  const { release_date, title, genres, poster_path, id } = movie;
+  const {
+    release_date, title, genres, poster_path, id,
+  } = movie;
 
   return (
     <>
@@ -38,30 +40,35 @@ export const MovieCard = ({ movie, onClick }) => {
       >
         <div className={styles.movieCard__imgWrapper}>
 
-          { !menuShown &&
+          { !menuShown
+            && (
             <div className={styles.movieCard__actions}>
               <button onClick={toggleMenuShown}>
-                <Image src={dotsImg} alt="three dots" layout="fill"/>
+                <Image src={dotsImg} alt="three dots" layout="fill" />
               </button>
             </div>
-          }
+            )}
 
           <OutsideClickHandler onOutsideClick={() => setMenuShown(false)}>
             <div
               className={`${styles.movieCard__modal} ${menuShown && styles.movieCard__modal_shown}`}
             >
               <button className={styles.movieCard__close} onClick={() => setMenuShown(false)}>
-                <Image src={closeImg} alt="x-mark" layout="fill"/>
+                <Image src={closeImg} alt="x-mark" layout="fill" />
               </button>
 
               <button
                 className={styles.movieCard__btn}
                 onClick={toggleEdit}
-              >Edit</button>
+              >
+                Edit
+              </button>
               <button
                 className={styles.movieCard__btn}
                 onClick={toggleDelete}
-              >Delete</button>
+              >
+                Delete
+              </button>
             </div>
           </OutsideClickHandler>
 

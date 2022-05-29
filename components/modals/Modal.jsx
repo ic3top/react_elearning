@@ -1,13 +1,15 @@
-import styles from './Modal.module.scss';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 import closeIcon from '/public/img/close.svg';
 import Image from 'next/image';
+import styles from './Modal.module.scss';
 
-export const Modal = ({ show, onClose, children, title }) => {
+export function Modal({
+  show, onClose, children, title,
+}) {
   useEffect(() => {
     if (show) document.body.style.overflowY = 'hidden';
-    return () => document.body.style.overflowY = 'auto';
+    return () => { document.body.style.overflowY = 'auto'; };
   }, [show]);
 
   if (!show) return null;
@@ -22,5 +24,5 @@ export const Modal = ({ show, onClose, children, title }) => {
         {children}
       </div>
     </div>
-  )
-};
+  );
+}
